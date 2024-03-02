@@ -11,9 +11,14 @@
 	<link href="CSS/style.css" rel="stylesheet">
 </head>
 <body>
+<div>
 	<h1>
 		All Films
 	</h1>
+	<button onclick="location.href='./addFilm'" type="button">
+         Add a New Film
+    </button>
+</div>
 	<table>
 		<tr>
 			<th>ID</th>
