@@ -27,6 +27,7 @@
 		    <th>Director</th>
 		    <th>Stars</th>
 		    <th>Review</th>
+		    <th>Action</th>
 		</tr>
 		<c:forEach items="${films}" var="f">
 			<tr>
@@ -36,6 +37,11 @@
 				<td> ${f.director}</td>
 				<td> ${f.stars} </td>
 				<td> ${f.review} </td>
+				<td>
+					<button onclick="location.href='./updateFilm?id=${f.id}'" type="button">
+				         Update Film
+				    </button>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
