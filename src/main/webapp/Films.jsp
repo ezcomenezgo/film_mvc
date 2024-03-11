@@ -41,6 +41,11 @@
 					<button onclick="location.href='./updateFilm?id=${f.id}'" type="button">
 				         Update Film
 				    </button>
+				    <form method="POST" action="./deleteFilm?id=${f.id}">
+				    	<button type="submit">
+				         Delete Film
+				    	</button>
+				    </form>
 				</td>
 			</tr>
 		</c:forEach>

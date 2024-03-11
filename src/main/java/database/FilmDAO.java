@@ -70,8 +70,6 @@ public class FilmDAO {
 		}
     	return thisFilm;		
 	}
-	
-	
 
 	/**
 	 * Retrieve all Films
@@ -135,11 +133,48 @@ public class FilmDAO {
 		   closeConnection();
 		   b = true;
 	   } catch (SQLException s) {
-		   throw new SQLException("Contact Not Added");
+		   throw new SQLException("Film Not Added");
 	   }
 	   
 	   return b;
    }
    
+   public boolean updateFilm(Film f) throws SQLException {
+	   boolean b = false;
+	   try {
+		   String sql = 
+				   "update films set title = '" + f.getTitle() + "','"
+				   + "year = '" +  f.getYear() + "','"
+				   + "director = '" +  f.getDirector() + "','"
+				   + "stars = '" +  f.getStars() + "','"
+				   + "review = '" +  f.getReview() + "','"
+				   + "where id = " + f.getId();
+		   
+		   System.out.println(sql);
+		   b = openConnection().execute(sql);
+		   closeConnection();
+		   b = true;
+	   } catch (SQLException e) {
+		   throw new SQLException("Film Not Updated");
+	   }
+	   
+	   return b;
+   }
+   
+   public boolean deleteFilmById(int id) throws SQLException {
+	   boolean b = false;
+	   try {
+		   String sql = "delete from films where id="+id;
+		   
+		   System.out.println(sql);
+		   b = openConnection().execute(sql);
+		   closeConnection();
+		   b = true;
+	   } catch (SQLException e) {
+		   throw new SQLException("Film Not Deleted");
+	   }
+	   
+	   return b;
+   }
    
 }
