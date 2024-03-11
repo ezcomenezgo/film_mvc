@@ -30,5 +30,19 @@
 				<td> ${film.review} </td>
 			</tr>
 	</table>
+	
+	<form method="POST" action="./updateFilm?id=${film.id}">
+		<label for="title">Title: </label>
+		<input type="text" name="title" placeholder="Title of Movie" value="${film.title}"/>
+		<label for="year">Year: </label>
+		<input type="text" name="year" placeholder="Year of Movie" value="${film.year}"/>
+		<label for="director">Director: </label>
+		<input type="text" name="director" placeholder="Director of Movie" value="${film.director}"/>
+		<label for="stars">Stars: </label>
+		<input type="text" name="stars" placeholder="Stars of Movie" value="${film.stars}"/>
+		<label for="review">Review: </label>
+		<input type="text" name="review" placeholder="Review of Movie" value="${film.review}"/>
+		<button type="submit" value="addNew">Submit</button>
+	</form>
 </body>
 </html>

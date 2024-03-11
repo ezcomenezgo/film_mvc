@@ -32,4 +32,28 @@ public class UpdateFilmController extends HttpServlet {
 //			e.printStackTrace();
 //		}
 	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+			FilmDAO dao = new FilmDAO();
+			Film film = new Film();
+			
+			film.setId(Integer.parseInt(request.getParameter("id")));
+			film.setTitle(request.getParameter("title"));
+			film.setYear(Integer.parseInt(request.getParameter("year")));
+			film.setDirector(request.getParameter("director"));
+			film.setStars(request.getParameter("stars"));
+			film.setReview(request.getParameter("review"));
+			
+			try {
+				boolean result = dao.updateFilm(film);
+				System.out.println("result" + result);
+				
+				if (result) {
+					response.sendRedirect("/FilmMVC/films");
+				} 
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	}
 }

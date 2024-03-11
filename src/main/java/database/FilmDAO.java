@@ -143,12 +143,12 @@ public class FilmDAO {
 	   boolean b = false;
 	   try {
 		   String sql = 
-				   "update films set title = '" + f.getTitle() + "','"
-				   + "year = '" +  f.getYear() + "','"
-				   + "director = '" +  f.getDirector() + "','"
-				   + "stars = '" +  f.getStars() + "','"
-				   + "review = '" +  f.getReview() + "','"
-				   + "where id = " + f.getId();
+				   "update films set title = '" + f.getTitle() + "',"
+				   + " year = " +  f.getYear() + ","
+				   + " director = '" +  f.getDirector() + "',"
+				   + " stars = '" +  f.getStars() + "',"
+				   + " review = '" +  f.getReview() + "'"
+				   + " where id = " + f.getId();
 		   
 		   System.out.println(sql);
 		   b = openConnection().execute(sql);
