@@ -13,14 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import database.FilmDAO;
 import models.Film;
 
-// What's the different from @WebServlet("/updateFilm/{id}")
 @WebServlet("/updateFilm")
 public class UpdateFilmController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		try {
 			FilmDAO dao = new FilmDAO();
 			Film film = dao.getFilmByID(Integer.parseInt(request.getParameter("id")));
 			
@@ -28,9 +26,6 @@ public class UpdateFilmController extends HttpServlet {
 			request.setAttribute("film", film);
 			RequestDispatcher rd = request.getRequestDispatcher("UpdateFilm.jsp");
 			rd.include(request, response);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -47,7 +42,6 @@ public class UpdateFilmController extends HttpServlet {
 			
 			try {
 				boolean result = dao.updateFilm(film);
-				System.out.println("result" + result);
 				
 				if (result) {
 					response.sendRedirect("/FilmMVC/films");

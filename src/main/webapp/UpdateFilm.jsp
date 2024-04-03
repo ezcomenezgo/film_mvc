@@ -18,7 +18,7 @@
 		<label for="title">Title*: </label>
 		<input type="text" name="title" placeholder="Title of Movie" value="${film.title}" required/>
 		<label for="year">Year*: </label>
-		<input type="text" name="year" placeholder="Year of Movie" value="${film.year}" required/>
+		<input type="number" name="year" placeholder="Year of Movie(number only)" value="${film.year}" required/>
 		<label for="director">Director*: </label>
 		<input type="text" name="director" placeholder="Director of Movie" value="${film.director}" required/>
 		<label for="stars">Stars*: </label>

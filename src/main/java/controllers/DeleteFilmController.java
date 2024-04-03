@@ -22,7 +22,6 @@ public class DeleteFilmController extends HttpServlet {
 			
 			try {
 				boolean result = dao.deleteFilmById(id);
-				System.out.println("result" + result);
 				
 				if (result) {
 					response.sendRedirect("/FilmMVC/films");

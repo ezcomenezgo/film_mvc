@@ -35,7 +35,6 @@ public class AddFilmController extends HttpServlet {
 		
 		try {
 			boolean result = dao.insertFilm(film);
-			System.out.println("result" + result);
 			
 			if (result) {
 				response.sendRedirect("/FilmMVC/films");
