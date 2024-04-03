@@ -3,10 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link href="CSS/form.css" rel="stylesheet">
 </head>
 <body>
+	<h1>
+		Add Films
+	</h1>
 	<form method="POST" action="./addFilm">
 		<label for="title">Title: </label>
 		<input type="text" name="title" placeholder="Title of Movie"/>

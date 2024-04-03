@@ -8,17 +8,17 @@
 <head>
 	<meta charset="UTF-8">
 	<title>All Films</title>
-	<link href="CSS/style.css" rel="stylesheet">
+	<link href="CSS/list.css" rel="stylesheet">
 </head>
 <body>
-<div>
-	<h1>
-		All Films
-	</h1>
-	<button onclick="location.href='./addFilm'" type="button">
-         Add a New Film
-    </button>
-</div>
+	<div class="nav">
+		<h1>
+			All Films
+		</h1>
+		<button onclick="location.href='./addFilm'" type="button">
+	         Add a New Film
+	    </button>
+	</div>
 	<table>
 		<tr>
 			<th>ID</th>
@@ -39,11 +39,11 @@
 				<td> ${f.review} </td>
 				<td>
 					<button onclick="location.href='./updateFilm?id=${f.id}'" type="button">
-				         Update Film
+				         Update
 				    </button>
 				    <form method="POST" action="./deleteFilm?id=${f.id}">
 				    	<button type="submit">
-				         Delete Film
+				         Delete
 				    	</button>
 				    </form>
 				</td>
