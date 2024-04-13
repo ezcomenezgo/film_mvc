@@ -16,7 +16,7 @@ import database.FilmDAO;
 import models.Film;
 
 /**
- * 
+ * Retrieve all Films
  */
 @WebServlet("/films")
 public class FilmsController extends HttpServlet {
@@ -26,9 +26,17 @@ public class FilmsController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		FilmDAO dao = new FilmDAO();
+		
+		String title = request.getParameter("title");
+		ArrayList<Film> films;
 
-		ArrayList<Film> allFilms = dao.getAllFilms();
-		request.setAttribute("films", allFilms);
+		if (title != null) {
+			films = dao.getFilmByName(title);
+		} else {
+			films = dao.getAllFilms();
+		}
+		
+		request.setAttribute("films", films);
 		RequestDispatcher rd = request.getRequestDispatcher("Films.jsp");
 		rd.include(request, response);
 

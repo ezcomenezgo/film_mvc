@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import database.FilmDAO;
 import models.Film;
 
+/**
+ * Update a new Film
+ */
 @WebServlet("/addFilm")
 public class AddFilmController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

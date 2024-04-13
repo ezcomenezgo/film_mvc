@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import database.FilmDAO;
 
+/**
+ * Delete a Film
+ */
 @WebServlet("/deleteFilm")
 public class DeleteFilmController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

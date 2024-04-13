@@ -11,7 +11,6 @@ import java.sql.*;
 
 public class FilmDAO {
 	
-	Film oneFilm = null;
 	Connection c = null;
     Statement s = null;
 	String user = "lijiawen";
@@ -54,7 +53,7 @@ public class FilmDAO {
 		}
 	}
 
-	private Film getNextFilm(ResultSet rs){
+	private Film mapFilm(ResultSet rs){
     	Film thisFilm=null;
 		try {
 			thisFilm = new Film(
@@ -82,11 +81,11 @@ public class FilmDAO {
 		
 	    // Create select statement and execute it
 		try{
-		    String selectSQL = "select * from films";
+		    String selectSQL = "SELECT * FROM films";
 		    ResultSet rs1 = s.executeQuery(selectSQL);
 	    // Retrieve the results
 		    while(rs1.next()){
-		    	oneFilm = getNextFilm(rs1);
+		    	Film oneFilm = mapFilm(rs1);
 		    	allFilms.add(oneFilm);
 		   }
 
@@ -97,17 +96,21 @@ public class FilmDAO {
 	   return allFilms;
    }
 
+   /**
+	 * Retrieve the Film by film ID
+	 * @return The film from all films found in the mysql database
+	 */
    public Film getFilmByID(int id){
 	   
 		openConnection();
-		oneFilm=null;
+		Film oneFilm = null;
 	    // Create select statement and execute it
 		try{
-		    String selectSQL = "select * from films where id="+id;
+		    String selectSQL = "SELECT * FROM films WHERE id="+id;
 		    ResultSet rs1 = s.executeQuery(selectSQL);
 	    // Retrieve the results
 		    while(rs1.next()){
-		    	oneFilm = getNextFilm(rs1);
+		    	oneFilm = mapFilm(rs1);
 		    }
 
 		    s.close();
@@ -117,10 +120,39 @@ public class FilmDAO {
 	   return oneFilm;
    }
    
+   /**
+	 * Retrieve the Films by film name
+	 * @return Collection from films contain keywords found in the mysql database
+	 */
+   public ArrayList<Film> getFilmByName(String name){
+	   
+		openConnection();
+		ArrayList<Film> films = new ArrayList<Film>();
+	    // Create select statement and execute it
+		try{
+		    String selectSQL = "SELECT * FROM films WHERE title LIKE '%"+ name + "%'";
+		    ResultSet rs1 = s.executeQuery(selectSQL);
+	    // Retrieve the results
+		    while(rs1.next()){
+		    	Film oneFilm = mapFilm(rs1);
+		    	films.add(oneFilm);
+		   }
+
+		    s.close();
+		    closeConnection();
+		} catch(SQLException se) { System.out.println(se); }
+
+	   return films;
+  }
+   
+   /**
+	 * Insert a new Film
+	 * @return Boolean
+	 */
    public boolean insertFilm(Film f) throws SQLException {
 	   boolean b = false;
 	   try {
-		   String sql = "insert into films (title, year, director, stars, review) values ("
+		   String sql = "INSERT INTO films (title, year, director, stars, review) VALUES ("
 		   		+ "'" + f.getTitle() + "','" 
 				+ f.getYear() + "','" 
 				+ f.getDirector() + "','" 
@@ -139,16 +171,20 @@ public class FilmDAO {
 	   return b;
    }
    
+   /**
+	 * Update a Film
+	 * @return Boolean
+	 */
    public boolean updateFilm(Film f) throws SQLException {
 	   boolean b = false;
 	   try {
 		   String sql = 
-				   "update films set title = '" + f.getTitle() + "',"
+				   "UPDATE films SET title = '" + f.getTitle() + "',"
 				   + " year = " +  f.getYear() + ","
 				   + " director = '" +  f.getDirector() + "',"
 				   + " stars = '" +  f.getStars() + "',"
 				   + " review = '" +  f.getReview() + "'"
-				   + " where id = " + f.getId();
+				   + " WHERE id = " + f.getId();
 		   
 		   System.out.println(sql);
 		   b = openConnection().execute(sql);
@@ -161,10 +197,14 @@ public class FilmDAO {
 	   return b;
    }
    
+   /**
+	 * Delete a Film by ID
+	 * @return Boolean
+	 */
    public boolean deleteFilmById(int id) throws SQLException {
 	   boolean b = false;
 	   try {
-		   String sql = "delete from films where id="+id;
+		   String sql = "DELETE FROM films WHERE id="+id;
 		   
 		   System.out.println(sql);
 		   b = openConnection().execute(sql);

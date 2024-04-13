@@ -18,6 +18,11 @@
 		<button onclick="location.href='./addFilm'" type="button">
 	         Add a New Film
 	    </button>
+	    <form method="GET" action="./films">
+	    	<label for="title">Search by title: </label>
+			<input type="text" name="title" placeholder="Title of Movie"/>
+			<button type="submit">Submit</button>
+	    </form>
 	</div>
 	<table>
 		<tr>
